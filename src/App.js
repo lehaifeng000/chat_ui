@@ -8,38 +8,30 @@ const App = () => {
   const [messages, setMessages] = useState([]);
 
   // 发送消息
-  const handleSendMessage = (message) => {
-    setMessages((prevMessages) => [{ id: Date.now(), text: message }, ...prevMessages]);
+  const handleSendMessage = async (message) => {
+    setMessages((prevMessages) => [message, ...prevMessages]);
 
-    // 在状态更新完成后发送 HTTP GET 请求
-    const url = `http://localhost:8000/chat`;
+    const formData = new FormData();
+    formData.append('img_url', message.img_url);
+    formData.append('text', message.text);
 
-    // 将 fetch 请求的 Promise 存储在 requestPromise 变量中
-    const requestPromise = fetch(url, {
-      method: 'GET',
-    });
-    console.log("aaaaa");
-    // 你可以在这里对 requestPromise 做一些操作，例如记录它
-    // console.log('发送请求的 Promise 对象：', requestPromise);
-
-    // 然后你可以像之前一样处理 Promise 的结果
-    requestPromise
-      .then((response) => {
-        if (!response.ok) {
-          console.log("请求失败");
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('请求成功，返回数据：', data);
-        setMessages((prevMessages) => [{ id: Date.now(), text: data }, ...prevMessages]);
-      })
-      .catch((error) => {
-        console.error('发送消息失败：', error);
+    try {
+      const url = `http://localhost:8000/chat/send_message`;
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
       });
 
-    
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const json_resp = await response.json(); // 获取文本响应
+      setMessages((prevMessages) => [{text: json_resp.text, type: "robot" }, ...prevMessages]);
+      
+    } catch (error) {
+      console.error('上传出错:', error);
+    }
 
   };
 

@@ -9,8 +9,9 @@
 
 /* 消息列表 */
 .message-list {
-  width: 1000px; /* 设置消息框宽度为 1000px */
-  height: calc(100vh - 120px); /* 高度占满屏幕，减去输入框和按钮的高度 */
+  width: calc(100vh); /* 设置消息框宽度为 1000px */
+  height: calc(100vh - 200px); /* 高度占满屏幕，减去输入框和按钮的高度 */
+  margin: 20px;
   overflow-y: auto;
   flex-grow: 1;
   padding: 20px;
@@ -29,14 +30,28 @@
   border-radius: 10px;
   max-width: 80%;
   word-wrap: break-word;
+  margin-right: auto;
+}
+
+/* 每条消息 */
+.message-user {
+  background-color: #888888;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+  float: right; /* 右对齐 */
+  margin-left: auto;
 }
 
 /* 输入框和按钮区域 */
 .chat-box {
-  width: 1000px; /* 输入框和按钮与消息框宽度一致 */
+  width: calc(100vh); /* 输入框和按钮与消息框宽度一致 */
   display: flex;
   align-items: center;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 /* 输入框 */
