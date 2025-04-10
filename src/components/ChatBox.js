@@ -42,7 +42,7 @@ const ChatBox = ({ onSendMessage }) => {
 
   const handleSend = () => {
     if (input.trim()) {
-      onSendMessage({text:input, type:'user', img_url:selectedFile});  // 发送消息
+      onSendMessage({text:input, type:'user', img_url:selectedFile, img_name:uploadImgResp.img_name});  // 发送消息
       setInput('');          // 清空输入框
       setSelectedFile('');
     }

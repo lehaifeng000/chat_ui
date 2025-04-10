@@ -12,6 +12,11 @@ const Message = ({ message}) => {
     return (
       <div className="message">
         <p>{message.text}</p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: message.text.replace(/\n/g, '<br />'),
+          }}
+        />
       </div>
     );
   }

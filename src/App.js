@@ -12,7 +12,7 @@ const App = () => {
     setMessages((prevMessages) => [message, ...prevMessages]);
 
     const formData = new FormData();
-    formData.append('img_url', message.img_url);
+    formData.append('img_name', message.img_name);
     formData.append('text', message.text);
 
     try {
