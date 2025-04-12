@@ -21,7 +21,8 @@ const ChatBox = ({ onSendMessage }) => {
     formData.append('img', file); // 'image' 是后端接收文件的字段名，根据你的 API 修改
 
     try {
-      const uploadUrl = `http://localhost:8000/chat/upload_img`;
+      const baseUrl = process.env.REACT_APP_API_BASE_URL;
+      const uploadUrl = `${baseUrl}/chat/upload_img`;
       const response = await fetch(uploadUrl, {
         method: 'POST',
         body: formData,
@@ -44,7 +45,10 @@ const ChatBox = ({ onSendMessage }) => {
     if (input.trim()) {
       onSendMessage({text:input, type:'user', img_url:selectedFile, img_name:uploadImgResp.img_name});  // 发送消息
       setInput('');          // 清空输入框
-      setSelectedFile('');
+      setSelectedFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''; // 清空文件选择
+      }
     }
   };
 

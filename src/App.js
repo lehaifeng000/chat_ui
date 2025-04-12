@@ -16,7 +16,8 @@ const App = () => {
     formData.append('text', message.text);
 
     try {
-      const url = `http://localhost:8000/chat/send_message`;
+      const baseUrl = process.env.REACT_APP_API_BASE_URL;
+      const url = `${baseUrl}/chat/send_message`;
       const response = await fetch(url, {
         method: 'POST',
         body: formData,

@@ -11,7 +11,6 @@ const Message = ({ message}) => {
   } else {
     return (
       <div className="message">
-        <p>{message.text}</p>
         <p
           dangerouslySetInnerHTML={{
             __html: message.text.replace(/\n/g, '<br />'),
