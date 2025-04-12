@@ -1,7 +1,6 @@
 import React, { useState, useRef  } from 'react';
 
 
-
 const ChatBox = ({ onSendMessage }) => {
   const [input, setInput] = useState('');
 
@@ -42,22 +41,29 @@ const ChatBox = ({ onSendMessage }) => {
   };
 
   const handleSend = () => {
-    if (input.trim()) {
-      onSendMessage({text:input, type:'user', img_url:selectedFile, img_name:uploadImgResp.img_name});  // 发送消息
-      setInput('');          // 清空输入框
-      setSelectedFile(null);
-      if (fileInputRef.current) {
-        fileInputRef.current.value = ''; // 清空文件选择
+    if (input.trim() && selectedFile) {
+      if (!uploadImgResp) {
+        alert("server no response!");
+      }
+      else {
+        onSendMessage({key:Date.now(),text:input, type:'user', img_url:selectedFile, img_name:uploadImgResp.img_name});  // 发送消息
+        setInput('');          // 清空输入框
+        setSelectedFile(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ''; // 清空文件选择
+        }
       }
     }
   };
 
   return (
     <div className="chat-box">
+      
+
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="输入你的消息..."
+        placeholder="please input your question..."
         rows="3"  // 可以调整高度
       />
       <input
@@ -66,15 +72,16 @@ const ChatBox = ({ onSendMessage }) => {
         style={{ display: 'none' }} // 隐藏默认的文件选择按钮
         ref={fileInputRef}
       />
+
       {selectedFile && (
         <div>
-          <img src={selectedFile} alt="Selected" style={{ maxWidth: '200px' }} />
+          <img src={selectedFile} alt="Selected" style={{ maxWidth: '200px',margin: '10px' }} />
         </div>
       )}
-      <button onClick={() => fileInputRef.current.click()}>
-        选择文件
+      <button className='chat-addfile' onClick={() => fileInputRef.current.click()}>
       </button>
-      <button onClick={handleSend}>发送</button>
+      
+      <button onClick={handleSend}>send</button>
     </div>
   );
 };

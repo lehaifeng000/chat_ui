@@ -12,7 +12,7 @@ const MessageList = ({ messages }) => {
   return (
     <div className="message-list">
       {messages.map((message) => (
-        <Message message={message}/>
+        <Message key={message.key} message={message}/>
       ))}
       {/* 用来自动滚动到最后一条消息 */}
       <div ref={messageEndRef} />
