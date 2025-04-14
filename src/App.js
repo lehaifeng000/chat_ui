@@ -31,17 +31,20 @@ const App = () => {
 
       const json_resp = await response.json(); // 获取 JSON 响应
       console.log(json_resp);
-
-      if (json_resp && json_resp.text) {
-        const text_resp = json_resp.text;
-        console.log(text_resp);
-        setMessages((prevMessages) => [{ key: Date.now(), text: text_resp, type: "robot" }, ...prevMessages]);
-      } else {
+      let msg_obj = { key: Date.now(), type: "robot" };
+      if (!json_resp) {
         // 处理 json_resp 为空或 json_resp.text 不存在的情况
         console.warn("服务器返回的数据不正确:", json_resp);
         alert("服务器返回的数据不正确，请稍后再试。");
+      } else {
+        if (json_resp.text) {
+          msg_obj.text = json_resp.text;
+        }
+        if (json_resp.img_url) {
+          msg_obj.img_url = json_resp.img_url;
+        }
+        setMessages((prevMessages) => [msg_obj, ...prevMessages]);
       }
-      
     } catch (error) {
       console.error('上传出错:', error);
     }
