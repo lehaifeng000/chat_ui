@@ -10,12 +10,14 @@ const App = () => {
 
   // 发送消息
   const handleSendMessage = async (message) => {
-    setMessages((prevMessages) => [message, ...prevMessages]);
+    setMessages((prevMessages) => [...prevMessages, message]);
 
   
     try {
       const formData = new FormData();
-      formData.append('img_name', message.img_name);
+      if (message.img_name) {
+        formData.append('img_name', message.img_name);
+      }
       formData.append('text', message.text);
       console.log(formData)
       const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -43,7 +45,7 @@ const App = () => {
         if (json_resp.img_url) {
           msg_obj.img_url = json_resp.img_url;
         }
-        setMessages((prevMessages) => [msg_obj, ...prevMessages]);
+        setMessages((prevMessages) => [...prevMessages, msg_obj]);
       }
     } catch (error) {
       console.error('上传出错:', error);

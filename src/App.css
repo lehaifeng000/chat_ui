@@ -42,7 +42,7 @@
   flex-grow: 1;
   padding: 20px;
   display: flex;
-  flex-direction: column-reverse; /* 消息从底部开始 */
+  flex-direction:column;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: rgba(234, 231, 231, 0.5); /* 设置背景颜色为灰色 */

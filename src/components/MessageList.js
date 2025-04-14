@@ -6,7 +6,7 @@ const MessageList = ({ messages }) => {
 
   // 每次 messages 更新时滚动到底部
   useEffect(() => {
-    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messageEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages]);
 
   return (

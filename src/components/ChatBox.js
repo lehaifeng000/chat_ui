@@ -41,12 +41,17 @@ const ChatBox = ({ onSendMessage }) => {
   };
 
   const handleSend = () => {
-    if (input.trim() && selectedFile) {
-      if (!uploadImgResp) {
+    if (input.trim()) {
+      if (!uploadImgResp && selectedFile) {
         alert("server no response!");
       }
       else {
-        onSendMessage({key:Date.now(),text:input, type:'user', img_url:selectedFile, img_name:uploadImgResp.img_name});  // 发送消息
+        let msg_obj = {key:Date.now(),text:input, type:'user'};
+        if (selectedFile) {
+          msg_obj.img_url = selectedFile;
+          msg_obj.img_name = uploadImgResp.img_name;
+        }
+        onSendMessage(msg_obj);  // 发送消息
         setInput('');          // 清空输入框
         setSelectedFile(null);
         if (fileInputRef.current) {

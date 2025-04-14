@@ -5,7 +5,7 @@ const Message = ({ message }) => {
     return (
       <div className="message-user">
         <p>{message.text}</p>
-        <img src={message.img_url} style={{ maxWidth: '200px' }} />
+        {message.img_url && <img src={message.img_url} alt="message image" style={{ maxWidth: '200px' }} />}
       </div>
     );
   } else {
