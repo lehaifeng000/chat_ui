@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ChatBox from './components/ChatBox';
 import MessageList from './components/MessageList';
+import TitleBox  from './components/TitleBox';  
 
 import './App.css';  // 引入CSS文件
 
@@ -49,6 +50,7 @@ const App = () => {
 
   return (
     <div className="chat-container" style={{backgroundImage: process.env.REACT_APP_API_BASE_URL+'/image/background.jpg',}} >
+      <TitleBox />
       <MessageList messages={messages} />
       <ChatBox onSendMessage={handleSendMessage} />
     </div>
