@@ -1,8 +1,9 @@
 import React, { useState, useRef  } from 'react';
-
+import ModelBox from './ModelBox'; // 引入模型选择组件
 
 const ChatBox = ({ onSendMessage }) => {
   const [input, setInput] = useState('');
+
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadImgResp, setUploadImgResp] = useState(null);
@@ -64,13 +65,13 @@ const ChatBox = ({ onSendMessage }) => {
   return (
     <div className="chat-box">
       
-
       <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="please input your question..."
         rows="3"  // 可以调整高度
       />
+      
       <input
         type="file"
         onChange={handleFileSelect}
@@ -86,7 +87,7 @@ const ChatBox = ({ onSendMessage }) => {
       <button className='chat-addfile' onClick={() => fileInputRef.current.click()}>
       </button>
       
-      <button onClick={handleSend}>send</button>
+      <button className='chat-send' onClick={handleSend}></button>
     </div>
   );
 };

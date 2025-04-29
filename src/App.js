@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import ChatBox from './components/ChatBox';
 import MessageList from './components/MessageList';
 import TitleBox  from './components/TitleBox';  
+import ModelBox from './components/ModelBox'; // 引入模型选择组件
 
 import './App.css';  // 引入CSS文件
 
 const App = () => {
   const [messages, setMessages] = useState([]);
+  const [selectedModel, setSelectedModel] = useState("default");
 
   // 发送消息
   const handleSendMessage = async (message) => {
@@ -19,6 +21,7 @@ const App = () => {
         formData.append('img_name', message.img_name);
       }
       formData.append('text', message.text);
+      formData.append('model', selectedModel);
       console.log(formData)
       const baseUrl = process.env.REACT_APP_API_BASE_URL;
       const url = `${baseUrl}/chat/send_message`;
@@ -56,6 +59,7 @@ const App = () => {
   return (
     <div className="chat-container" style={{backgroundImage: process.env.REACT_APP_API_BASE_URL+'/image/background.jpg',}} >
       <TitleBox />
+      <ModelBox selectedModel={selectedModel} onModelChange={setSelectedModel} />
       <MessageList messages={messages} />
       <ChatBox onSendMessage={handleSendMessage} />
     </div>

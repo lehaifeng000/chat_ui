@@ -13,11 +13,30 @@
   flex-direction:row;
   align-items: center; /* 水平居中 */
   justify-content: center; 
+  /* background-color: aquamarine; */
+}
+.model-box {
+  /* width: 70vw; */
+  display: flex;
+  /* background-color: #888888; */
+  align-self: flex-start;
+  position:absolute;
+  top: 10px; /* 距离顶部10px */
+  left: 15vw; /* 水平居中 */
+}
+.model-select{
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  align-self: flex-start;
+  /* appearance: none; 使用浏览器默认样式 */
+  /* background-color: #45a049; */
 }
 
 .icon {
-  width: 80px; /* 设置宽度 */
-  height: 80px; /* 设置高度 */
+  width: 60px; /* 设置宽度 */
+  height: 60px; /* 设置高度 */
   background-size: contain; /* 确保图片完全显示 */
   background-repeat: no-repeat; /* 防止图片重复 */
   border: none; /* 移除边框 */
@@ -31,6 +50,13 @@
   font-variant: small-caps;
   font-weight: bold;
   font-size:xx-large;
+}
+
+.title-txt-chinese {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size:x-large;
+  margin-top: 7px;
 }
 
 /* 消息列表 */
@@ -88,6 +114,21 @@
   background-repeat: no-repeat; /* 防止图片重复 */
   border: none; /* 移除边框 */
   padding: 0; /* 移除内边距 */
+  cursor: pointer; /* 设置鼠标样式 */
+  outline: none; /* 移除点击时的轮廓 */
+  background-position: center;
+  background-color: transparent; /* 设置背景为透明 */
+}
+
+/*发送按钮*/
+.chat-send {
+  background-image: url('../public/upload_icon.png');
+  width: 50px; /* 设置宽度 */
+  height: 50px; /* 设置高度 */
+  background-size: 90%; /* 确保图片完全显示 */
+  background-repeat: no-repeat; /* 防止图片重复 */
+  border: none; /* 移除边框 */
+  padding: 10; /* 移除内边距 */
   cursor: pointer; /* 设置鼠标样式 */
   outline: none; /* 移除点击时的轮廓 */
   background-position: center;
